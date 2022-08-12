@@ -11,6 +11,9 @@ const optOneMinus = document.querySelector('.opt-one-minus');
 const optTwoPlus = document.querySelector('.opt-two-plus');
 const optTwoMinus = document.querySelector('.opt-two-minus');
 
+const endPollButtEL = document.querySelector('.end-poll-button');
+const pastPolls = document.querySelector('.past-polls-container');
+
 
 
 // state
@@ -63,6 +66,11 @@ optTwoMinus.addEventListener('click', () => {
     displayCurrentPoll();
 });
 
+endPollButtEL.addEventListener('click', () => {
+    currentPoll.textContent = '';
+    displayAllPolls();
+});
+
 // render poll - then create a function to display the current poll in current poll el
 
 function renderOption(option, count) {
@@ -84,7 +92,7 @@ function renderPoll(poll) {
     const optionOneDiv = renderOption(poll.optionOne, poll.optionOneCount);
     const optionTwoDiv = renderOption(poll.optionTwo, poll.optionTwoCount);
 
-    question.textContent = `Current Question: ${poll.userQuestion}`;
+    question.textContent = `Question: ${poll.userQuestion}`;
     optionDiv.classList.add('current-poll-stats');
 
     optionDiv.append(optionOneDiv, optionTwoDiv);
@@ -97,5 +105,11 @@ function displayCurrentPoll() {
 
     const pollEl = renderPoll({ userQuestion, optionOne, optionOneCount, optionTwo, optionTwoCount });
     currentPoll.append(pollEl);
+}
 
+function displayAllPolls() {
+    pastPolls.textContent = '';
+    const div = renderPoll({ userQuestion, optionOne, optionOneCount, optionTwo, optionTwoCount }); 
+    div.classList.add('past-poll');
+    pastPolls.append(div);
 }

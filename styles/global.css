@@ -77,3 +77,10 @@ footer {
     flex-direction: row;
     justify-content: space-around;
 }
+
+.past-poll {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    border: 1px solid black;
+}

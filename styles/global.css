@@ -51,4 +51,9 @@ footer {
     border-radius: 5px;
 }
 
+.right-section {
+    position: relative;
+    top: -50px;
+    margin: 10px;
+}
 

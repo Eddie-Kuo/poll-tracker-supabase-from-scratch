@@ -1,11 +1,8 @@
-
+import { createPoll, getPolls } from './fetch-utils.js';
 
 // DOM elements
 const inputForm = document.querySelector('.input-section');
 const currentPoll = document.querySelector('.current-poll-container');
-const currentQuestionEl = document.querySelector('.current-question');
-const currentOptOne = document.querySelector('.current-opt-one');
-const currentOptTwo = document.querySelector('.current-opt-two');
 const optOnePlus = document.querySelector('.opt-one-plus');
 const optOneMinus = document.querySelector('.opt-one-minus');
 const optTwoPlus = document.querySelector('.opt-two-plus');
@@ -33,10 +30,6 @@ inputForm.addEventListener('submit', (event) => {
     userQuestion = data.get('user-question');
     optionOne = data.get('option-one');
     optionTwo = data.get('option-two');
-
-    // currentQuestionEl.textContent = userQuestion;
-    // currentOptOne.textContent = optionOne;
-    // currentOptTwo.textContent = optionTwo;
 
     optionOneCount = 0;
     optionTwoCount = 0;
@@ -66,8 +59,23 @@ optTwoMinus.addEventListener('click', () => {
     displayCurrentPoll();
 });
 
-endPollButtEL.addEventListener('click', () => {
+endPollButtEL.addEventListener('click', async () => {
     currentPoll.textContent = '';
+
+    const pollData = {
+        question: userQuestion,
+        option1: optionOne,
+        option2: optionTwo,
+        votes1: optionOneCount,
+        votes2: optionTwoCount,
+    };
+
+    const response = await createPoll(pollData);
+
+    displayAllPolls(response);
+});
+
+window.addEventListener('load', async () => {
     displayAllPolls();
 });
 
@@ -75,7 +83,7 @@ endPollButtEL.addEventListener('click', () => {
 
 function renderOption(option, count) {
     const optionDiv = document.createElement('div');
-    const optionName = document.createElement('p')
+    const optionName = document.createElement('p');
     const optionScore = document.createElement('p');
 
     optionName.textContent = option;
@@ -89,10 +97,10 @@ function renderPoll(poll) {
     const div = document.createElement('div');
     const optionDiv = document.createElement('div');
     const question = document.createElement('h4');
-    const optionOneDiv = renderOption(poll.optionOne, poll.optionOneCount);
-    const optionTwoDiv = renderOption(poll.optionTwo, poll.optionTwoCount);
+    const optionOneDiv = renderOption(poll.optionOne || poll.option1, poll.optionOneCount || poll.votes1);
+    const optionTwoDiv = renderOption(poll.optionTwo || poll.option2, poll.optionTwoCount || poll.votes2);
 
-    question.textContent = `Question: ${poll.userQuestion}`;
+    question.textContent = `Question: ${poll.userQuestion || poll.question}`;
     optionDiv.classList.add('current-poll-stats');
 
     optionDiv.append(optionOneDiv, optionTwoDiv);
@@ -107,9 +115,12 @@ function displayCurrentPoll() {
     currentPoll.append(pollEl);
 }
 
-function displayAllPolls() {
+async function displayAllPolls() {
     pastPolls.textContent = '';
-    const div = renderPoll({ userQuestion, optionOne, optionOneCount, optionTwo, optionTwoCount }); 
-    div.classList.add('past-poll');
-    pastPolls.append(div);
+    const polls = await getPolls(); 
+    for (let poll of polls) {
+        const newDiv = renderPoll(poll);
+        newDiv.classList.add('past-poll');
+        pastPolls.append(newDiv);
+    }
 }

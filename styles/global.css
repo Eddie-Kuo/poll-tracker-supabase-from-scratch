@@ -54,6 +54,26 @@ footer {
 .right-section {
     position: relative;
     top: -50px;
-    margin: 10px;
 }
 
+.voting {
+    display: flex;
+
+}
+
+.voting div {
+    margin: 20px;
+    width: 100%;
+}
+
+.current-poll-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.current-poll-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

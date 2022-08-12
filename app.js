@@ -42,6 +42,27 @@ inputForm.addEventListener('submit', (event) => {
 
 });
 
+// voting event listeners
+optOnePlus.addEventListener('click', () => {
+    optionOneCount++;
+    displayCurrentPoll();
+});
+
+optOneMinus.addEventListener('click', () => {
+    optionOneCount--;
+    displayCurrentPoll();
+});
+
+optTwoPlus.addEventListener('click', () => {
+    optionTwoCount++;
+    displayCurrentPoll();
+});
+
+optTwoMinus.addEventListener('click', () => {
+    optionTwoCount--;
+    displayCurrentPoll();
+});
+
 // render poll - then create a function to display the current poll in current poll el
 
 function renderOption(option, count) {
@@ -78,51 +99,3 @@ function displayCurrentPoll() {
     currentPoll.append(pollEl);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// function renderOption(option, count) {
-//     const optDiv = document.createElement('div');
-//     const p = document.createElement('p');
-//     const scoreP = document.createElement('p');
-
-//     p.textContent = option;
-//     scoreP.textContent = count;
-
-//     optDiv.append(p, scoreP);
-//     return optDiv;
-// }
-
-// function renderPoll(poll) {
-//     const div = document.createElement('div');
-//     const question = document.createElement('h4');
-//     const optionTwoDiv = renderOption(poll.optionOne, poll.optionOneCount);
-//     const optionTwoDiv = renderOption(poll.optionTwo, poll.optionTwoCount);
-
-//     question.textContent = poll.userQuestion;
-//     div.classList.add('current-poll-stats');
-
-//     div.append(question, optionOneDiv, optionTwoDiv);
-//     return div;
-// }
-
-// function displayCurrentPoll() {
-//     currentPoll.textContent = '';
-
-//     currentQuestionEl.textContent = userQuestion;
-//     currentOptOne.textContent = optionOne;
-//     currentOptTwo.textContent = optionTwo;
-
-//     const pollEl = renderPoll({ userQuestion, optionOne, optionOneCount, optionTwo, optionTwoCount });
-
-//     currentPoll.append(pollEl);
-// }

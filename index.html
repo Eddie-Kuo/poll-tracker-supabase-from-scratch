@@ -12,6 +12,9 @@
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/global.css" />
+
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
     <title>Web App</title>
 </head>
 
@@ -22,6 +25,30 @@
     </header>
 
     <main>
+
+        <div class="top-section">
+            <section class="left-section">
+                    <form class="input-section">
+                        <label>
+                            Question Input
+                            <input name="user-question">
+                        </label>
+                        <label>
+                            Option One
+                            <input name="option-one">
+                        </label>
+                        <label>
+                            Option Two
+                            <input name="option-two">
+                        </label>
+                        <button class="submit-button">Submit!</button>
+                    </form>
+            </section>
+
+            <section class="right-section">
+                <h2 class="current-poll-container">Current Polls</h2>
+            </section>
+        </div>
 
     </main>
 

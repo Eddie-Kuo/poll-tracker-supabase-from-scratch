@@ -108,6 +108,8 @@ function renderPoll(poll) {
     return div;
 }
 
+// display functions
+
 function displayCurrentPoll() {
     currentPoll.textContent = ''; 
 

@@ -7,9 +7,9 @@
 body {
     height: 100vh;
     font-family: 'Rubik', san-serif;
-    background: var(--background);
     display: grid;
     grid-template-rows: auto 1fr auto;
+    background-color: lightcyan;
 }
 
 header {
@@ -17,7 +17,6 @@ header {
     top: 0;
     display: flex;
     align-items: center;
-    background-color: var(--header-background);
 }
 
 main {
@@ -31,5 +30,57 @@ footer {
     font-size: .8em;
     display: flex;
     justify-content: flex-end;
-    background-color: var(--footer-background);
+}
+
+.top-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.input-section input{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.submit-button {
+    width: 50%;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.right-section {
+    position: relative;
+    top: -50px;
+}
+
+.voting {
+    display: flex;
+
+}
+
+.voting div {
+    margin: 20px;
+    width: 100%;
+}
+
+.current-poll-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.current-poll-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.past-poll {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    border: 1px solid black;
 }
